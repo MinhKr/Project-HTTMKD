@@ -1,10 +1,9 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
 
-Route::get('/', function () {
-    return view('weather.index');
-});
+// Route hiển thị thời tiết
+Route::get('/', [WeatherController::class, 'index'])->name('weather.index');
 
-Route::get('/', [WeatherController::class, 'index']);
+// Route gửi câu hỏi đến ChatGPT
+Route::post('/chat', [WeatherController::class, 'sendToChatGPT'])->name('chat.send');
