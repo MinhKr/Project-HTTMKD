@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -50,4 +50,297 @@ h2 {
 }
 .chatbot button:hover {
     background-color: #45a049;
+} */
+
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #34495e;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s; /* Thêm hiệu ứng chuyển động */
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background-color: #1abc9c;
+    transform: scale(1.05); /* Tăng kích thước khi hover */
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.weather-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Cho phép cuộn ngang */
+    padding: 10px 0;
+}
+
+.weather-card {
+    flex: 0 0 150px; /* Chiều rộng cố định cho thẻ thời tiết */
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s; /* Thêm hiệu ứng chuyển động */
+}
+
+.weather-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+}
+
+.weather-card img {
+    width: 50px; /* Kích thước hình ảnh */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+}
+
+.weather-card p {
+    margin: 5px 0; /* Khoảng cách giữa các đoạn văn */
+}
+
+h1 {
+    margin-top: 0; /* Bỏ khoảng cách trên */
+    font-size: 28px; /* Kích thước tiêu đề chính */
+    color: #34495e; /* Màu tiêu đề chính */
+}
+
+.error-message {
+    color: red; /* Màu cho thông báo lỗi */
+    font-weight: bold; /* Đậm chữ thông báo lỗi */
+}
+
+.weather-summary {
+    margin-top: 20px; /* Khoảng cách trên */
+    padding: 20px; /* Padding cho vùng tóm tắt thời tiết */
+    background-color: #fff; /* Màu nền trắng cho vùng tóm tắt */
+    border-radius: 10px; /* Bo góc cho vùng tóm tắt */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho vùng tóm tắt */
+}
+
+.weather-summary h2 {
+    font-size: 24px; /* Kích thước tiêu đề trong vùng tóm tắt */
+}
+
+.weather-summary p {
+   font-size: 18px; /* Kích thước văn bản trong vùng tóm tắt */
+}
+
+.weather-summary .feels-like {
+   font-size: 18px; 
+   color: #777; /* Màu cho cảm giác như thế nào */
+}
+
+.additional-info {
+   margin-top: 20px; 
+   font-size: 16px; 
+   text-align: left; 
+}
+
+.table-container {
+   display: flex; 
+   justify-content: center; 
+   margin-top: 20px; 
+   max-width:90%; 
+}
+
+table {
+   border-collapse: collapse; 
+   width:100%; 
+   max-width :800px; 
+   margin : auto ; 
+   box-shadow :0 ,4 ,8 rgba(0 ,0 ,0 ,0.2); 
+}
+th, td {
+   border :1 px solid #ddd ; 
+   padding :12 px ; 
+   text-align :center ; 
+}
+
+th {
+   background-color :#f2f2f2 ; 
+   color :#333 ; 
+}
+
+td.status {
+   font-weight :bold ; 
+}
+
+td.status.ongoing {
+   color :green ; 
+}
+
+td.status.not-started {
+   color :red ; 
+}
+
+tr:nth-child(even) {
+   background-color :#f9f9f9 ; 
+}
+
+tr:hover {
+   background-color :#f1f1f1 ; 
+}
+
+/* Đây là một nhận xét trong CSS */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.sidebar {
+    width: 200px;
+    float: left;
+}
+
+.content {
+    margin-left: 220px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+}
+
+.weather-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.weather-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: calc(25% - 40px); /* Chiều rộng cho bốn thẻ trong một hàng */
+}
+
+.additional-info p {
+   margin-bottom: 5px; 
+   font-weight: bold; 
+}
+
+.feels-like {
+   font-style: italic; 
+}
+
+.weather-summary img {
+   vertical-align: middle; 
+}
+
+h2 { 
+   margin-top: 20px; 
+} #chat-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative; /* Đặt vị trí tương đối */
+    margin-top: 20px; /* Khoảng cách trên */
+}
+
+#chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#chat-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    background-color: #fafafa;
+}
+
+#message {
+    width: calc(100% - 100px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: -5px; 
+}
+
+#send-btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+#send-btn:hover {
+    background-color: #0056b3; 
+}
+
+.user-message {
+   text-align:right; 
+}
+
+.bot-message {
+   text-align:left; 
+}
+
+.message {
+   padding :8 px12 px; 
+   border-radius :20 px; 
+   display :inline-block; 
+   max-width :70%; 
+   word-wrap :break-word; 
+}
+
+.user-message .message {
+   background-color :#007bff; 
+   color :white; 
+}
+
+.bot-message .message {
+   background-color :#e9ecef; 
+   color :#333; 
 }
