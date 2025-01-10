@@ -71,7 +71,7 @@ class WeatherController extends Controller
                 'resources' => [
                     [
                         'type' => 'dashboard',
-                        'id' => '595d7829-fd5b-49db-97ef-f6e597b81d32' // ID dashboard
+                        'id' => 'f661acfd-5a8f-457a-b259-7aea9b67d688' // ID dashboard
                     ]
                 ],
                 'user' => [

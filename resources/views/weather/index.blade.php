@@ -93,11 +93,14 @@
         <div id="dashboard" class="tab-content" style="display: none;">
             <h1>Bảng điều khiển</h1>
             <p>Chào mừng bạn đến với Bảng điều khiển Nông nghiệp thông minh!</p>
+            <style>
+                #superset-dashboard iframe{width: 100%;height:100vh;}
+            </style>
             <div id="superset-dashboard"></div>
             <script src="https://unpkg.com/@superset-ui/embedded-sdk"></script>
             <script>
             supersetEmbeddedSdk.embedDashboard({
-                id: "595d7829-fd5b-49db-97ef-f6e597b81d32", // given by the Superset embedding UI
+                id: "f661acfd-5a8f-457a-b259-7aea9b67d688", // given by the Superset embedding UI
                 supersetDomain: "http://82.112.237.22:8088/",
                 mountPoint: document.getElementById(
                     "superset-dashboard"), // any html element that can contain an iframe
