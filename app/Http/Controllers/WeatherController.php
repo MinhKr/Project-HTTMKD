@@ -25,41 +25,22 @@ class WeatherController extends Controller
 
         if ($response->successful()) {
             $forecast = $response->json();
-            return view('weather.index', compact('forecast'));
+
+            // Lấy tên thành phố từ dữ liệu dự báo
+            $cityName = $forecast['city']['name'] ?? 'Không xác định';
+
+            // Lọc ra dữ liệu cho 5 ngày (1 lần mỗi ngày)
+            $dailyForecast = [];
+            foreach ($forecast['list'] as $weather) {
+                $date = \Carbon\Carbon::parse($weather['dt_txt'])->format('Y-m-d');
+                if (!isset($dailyForecast[$date])) {
+                    $dailyForecast[$date] = $weather;
+                }
+            }
+
+            return view('weather.index', compact('dailyForecast', 'cityName'));
         }
 
         return view('weather.index')->withErrors('Không thể lấy dữ liệu dự báo thời tiết');
-    }
-
-    // Phương thức gửi câu hỏi đến ChatGPT
-    public function sendToChatGPT(Request $request)
-    {
-        $apiKey = env('OPENAI_API_KEY');
-        $model = 'gpt-3.5-turbo';
-        $userInput = $request->input('question');
-
-        try {
-            // Gửi yêu cầu đến OpenAI API
-            $response = Http::withHeaders([
-                'Authorization' => "Bearer $apiKey",
-            ])->post('https://api.openai.com/v1/chat/completions', [
-                'model' => $model,
-                'messages' => [
-                    [
-                        'role' => 'user',
-                        'content' => $userInput,
-                    ]
-                ],
-            ]);
-
-            if ($response->successful()) {
-                $result = $response->json();
-                return response()->json(['response' => $result['choices'][0]['message']['content'] ?? 'Không có phản hồi từ ChatGPT']);
-            }
-
-            return response()->json(['response' => 'Lỗi từ OpenAI API'], 500);
-        } catch (\Exception $e) {
-            return response()->json(['response' => 'Có lỗi xảy ra khi kết nối với OpenAI: ' . $e->getMessage()], 500);
-        }
     }
 }
