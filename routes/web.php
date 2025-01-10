@@ -14,3 +14,4 @@ Route::get('/', [WeatherController::class, 'index'])->name('weather.index');
 // Route gửi câu hỏi đến ChatGPT
 Route::post('/chat', [ChatBotController::class, 'sendToChatGPT']);
 Route::post('/question', [GeminiController::class, 'sendToGemini']);
+Route::get('/test', [WeatherController::class, 'test']);
