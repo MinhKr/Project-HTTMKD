@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class WeatherController extends Controller
 {
@@ -42,5 +43,52 @@ class WeatherController extends Controller
         }
 
         return view('weather.index')->withErrors('Không thể lấy dữ liệu dự báo thời tiết');
+    }
+
+    public function test(){
+        $client = new Client();
+
+        // Khai báo url api superset
+        $supersetApiUrl = "http://82.112.237.22:8088/api/v1";
+
+        $responseTokenLogin = $client->request('POST', $supersetApiUrl . "/security/login", [
+            'json' => [
+                'username' => 'admin',
+                'password' => 'admin',
+                'provider' => 'db',
+                'refresh' => false
+            ]
+        ]);
+
+        $bodyTokenLogin = json_decode($responseTokenLogin->getBody(), true);
+        $token = $bodyTokenLogin['access_token'];
+
+        $responseGetGuestToken = $client->request('POST', $supersetApiUrl . "/security/guest_token/", [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token
+            ],
+            'json' => [
+                'resources' => [
+                    [
+                        'type' => 'dashboard',
+                        'id' => 'f661acfd-5a8f-457a-b259-7aea9b67d688' // ID dashboard
+                    ]
+                ],
+                'user' => [
+                    'username' => 'guest_user',
+                    'first_name' => 'guest_user',
+                    'last_name' => 'guest_user',
+                    'email' => 'guest_user'
+                ],
+                'rls' => [
+                    
+                ]
+            ]
+        ]);
+
+        $bodyGuestToken = json_decode($responseGetGuestToken->getBody(), true);
+        $guestToken = $bodyGuestToken['token'];
+
+        return response()->json($guestToken);
     }
 }
